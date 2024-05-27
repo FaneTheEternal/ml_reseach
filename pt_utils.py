@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras import layers, losses
+from tensorflow.keras import (
+    layers,
+    losses,
+)
 
 __all__ = [
     'main_voc',
@@ -71,6 +74,14 @@ def main_retrain(ds_path, voc_path, text_layer, model_path):
     ))
 
     train(ds, text_layer, model, adapt=True)
+
+
+def main_predict(model_path, voc_path, text_layer):
+    model = tf.keras.models.load_model(model_path)
+    with open(voc_path, 'r') as f:
+        voc = json.loads(f.read())
+    text_layer.set_vocabulary(voc)
+    predict_model(model, text_layer)
 
 
 def train(ds, text_layer, model, adapt=False):
