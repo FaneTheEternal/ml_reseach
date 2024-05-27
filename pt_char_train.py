@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow.keras import layers
 
 from pt_char import text_layer, max_features
-from pt_utils import *
+from pt_utils import main_train
 
 ds_file, voc_file, model_file = sys.argv[1:]
 
