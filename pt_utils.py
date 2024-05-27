@@ -185,9 +185,6 @@ def predict_model(model, text_layer):
         model,
         layers.Activation('sigmoid')
     ])
-    model.compile(
-        loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
-    )
     predict = model.predict(examples)
     _width = max(map(len, examples)) + 2
     print('\n'.join(
